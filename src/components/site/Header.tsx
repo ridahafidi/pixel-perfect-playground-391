@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { NAV_ITEMS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
+import { LanguagePicker } from "./LanguagePicker";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -54,6 +55,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <LanguagePicker className="hidden md:inline-flex" />
           <Button asChild variant="hero" size="sm" className="hidden h-9 px-4 tracking-wide sm:inline-flex">
             <Link to="/download">
               <Download />
@@ -98,7 +100,8 @@ export function Header() {
                     {item.label}
                   </Link>
                 ))}
-                <Button asChild variant="hero" size="xl" className="mt-8">
+                <LanguagePicker full align="start" side="top" className="mt-8" />
+                <Button asChild variant="hero" size="xl" className="mt-3">
                   <Link to="/download" onClick={() => setOpen(false)}>
                     <Download />
                     Software herunterladen

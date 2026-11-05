@@ -197,9 +197,9 @@ export function DashboardScreen({ animate = true }: { animate?: boolean }) {
             <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Umsatzübersicht</p>
             <Chip tone="lime">2026</Chip>
           </div>
-          <div className="flex h-24 items-end gap-1.5">
+          <div className="flex h-24 gap-1.5">
             {BARS.map((h, i) => (
-              <div key={i} className="flex flex-1 flex-col items-center gap-1">
+              <div key={i} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
                 <div
                   className={cn(
                     "w-full origin-bottom rounded-[2px]",

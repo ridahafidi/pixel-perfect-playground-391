@@ -11,7 +11,10 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "license:start": "node license-server/server.mjs",
+    "license:test": "node --test license-server/*.test.mjs desktop/*.test.cjs",
+    "license:password": "node license-server/password.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1"

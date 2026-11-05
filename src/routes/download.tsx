@@ -15,10 +15,15 @@ import { DownloadButton } from "@/components/site/DownloadButton";
 import { FaqList, type FaqItem } from "@/components/site/FaqList";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { getRequestOrigin } from "@/lib/origin.functions";
 import { seo } from "@/lib/seo";
-import { DOWNLOADS, PORTABLE_SHA256, SITE } from "@/lib/site";
+import { DOWNLOADS, PORTABLE_SHA256, SITE, LICENSE_ACCESS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/download")({
@@ -40,12 +45,18 @@ const OPTIONS = [
 ];
 
 const STEPS = [
-  { title: "Version herunterladen", text: "Wählen Sie die portable ZIP-Version oder den klassischen Windows-Installer." },
+  {
+    title: "Version herunterladen",
+    text: "Wählen Sie die portable ZIP-Version oder den klassischen Windows-Installer.",
+  },
   {
     title: "Portable: ZIP-Archiv entpacken",
     text: "Entpacken Sie das Archiv vollständig in einen Ordner Ihrer Wahl. Beim Installer folgen Sie stattdessen den Schritten des Setup-Assistenten.",
   },
-  { title: "KFZ Faktura.exe starten", text: "Starten Sie die Anwendung über „KFZ Faktura.exe“ im entpackten Ordner bzw. über die angelegte Verknüpfung." },
+  {
+    title: "KFZ Faktura.exe starten",
+    text: "Starten Sie die Anwendung über „KFZ Faktura.exe“ im entpackten Ordner bzw. über die angelegte Verknüpfung.",
+  },
   {
     title: "Lizenz & Anmeldung einrichten",
     text: "Hinterlegen Sie die Offline-Maschinenlizenz und melden Sie sich mit einem freigegebenen Google-Konto an.",
@@ -82,8 +93,8 @@ const FAQ: FaqItem[] = [
     q: "Wie kann ich das heruntergeladene Archiv prüfen?",
     a: (
       <>
-        Vergleichen Sie die SHA-256-Prüfsumme der ZIP-Datei mit dem hier veröffentlichten Wert. Unter Windows öffnen Sie
-        dazu PowerShell im Download-Ordner und führen{" "}
+        Vergleichen Sie die SHA-256-Prüfsumme der ZIP-Datei mit dem hier veröffentlichten Wert.
+        Unter Windows öffnen Sie dazu PowerShell im Download-Ordner und führen{" "}
         <code className="rounded bg-surface px-1.5 py-0.5 font-mono text-xs text-foreground">
           Get-FileHash .\{DOWNLOADS.portable.file} -Algorithm SHA256
         </code>{" "}
@@ -96,7 +107,11 @@ const FAQ: FaqItem[] = [
     a: (
       <>
         Nutzen Sie das{" "}
-        <Link to="/bewertungen" hash="kontakt" className="text-foreground underline underline-offset-4">
+        <Link
+          to="/bewertungen"
+          hash="kontakt"
+          className="text-foreground underline underline-offset-4"
+        >
           Kontaktformular
         </Link>
         . Dort erhalten Sie auch Informationen zu konfigurierten Versionen und Lizenzen.
@@ -110,7 +125,10 @@ function DownloadPage() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden pt-28 md:pt-36">
-        <div className="bg-grid absolute inset-0 [mask-image:linear-gradient(180deg,black,transparent_80%)]" aria-hidden="true" />
+        <div
+          className="bg-grid absolute inset-0 [mask-image:linear-gradient(180deg,black,transparent_80%)]"
+          aria-hidden="true"
+        />
         <div className="bg-glow absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-5 pb-16 md:px-8">
           <Breadcrumbs current="Preise & Download" />
@@ -121,7 +139,8 @@ function DownloadPage() {
                 Starten Sie mit KFZ Faktura.
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-                Entdecken Sie eine spezialisierte Desktop-Lösung für die Organisation Ihres Werkstattalltags.
+                Entdecken Sie eine spezialisierte Desktop-Lösung für die Organisation Ihres
+                Werkstattalltags.
               </p>
             </div>
             <a
@@ -134,13 +153,41 @@ function DownloadPage() {
                 <span className="text-muted-foreground">
                   Lizenz und konfigurierte Anmeldung sind für die volle Nutzung erforderlich.
                 </span>{" "}
-                <span className="text-warning underline-offset-4 group-hover:underline">Hinweise lesen</span>
+                <span className="text-warning underline-offset-4 group-hover:underline">
+                  Hinweise lesen
+                </span>
               </span>
             </a>
           </div>
         </div>
       </section>
 
+      <section className="border-y border-border bg-surface-2/50 py-16">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <SectionHeading
+            eyebrow="Neue Online-Aktivierung"
+            title={LICENSE_ACCESS.title}
+            intro={LICENSE_ACCESS.intro}
+          />
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {LICENSE_ACCESS.steps.map((step, i) => (
+              <div key={step.title} className="rounded-lg border border-border bg-background p-6">
+                <p className="eyebrow">0{i + 1}</p>
+                <h3 className="mt-4 text-xl font-semibold">{step.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-sm text-muted-foreground">{LICENSE_ACCESS.note}</p>
+          <Link
+            to="/bewertungen"
+            hash="kontakt"
+            className="mt-6 inline-flex rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground"
+          >
+            Lizenz erwerben / Kontakt
+          </Link>
+        </div>
+      </section>
       {/* DOWNLOAD CARDS */}
       <section className="pb-24">
         <div className="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-2 md:px-8">
@@ -155,7 +202,9 @@ function DownloadPage() {
                   i === 0 ? "border-primary/50" : "border-border hover:border-foreground/30",
                 )}
               >
-                {i === 0 && <div className="bg-glow absolute inset-0 opacity-70" aria-hidden="true" />}
+                {i === 0 && (
+                  <div className="bg-glow absolute inset-0 opacity-70" aria-hidden="true" />
+                )}
                 <div className="relative flex items-start justify-between gap-4">
                   <span className="flex size-12 items-center justify-center rounded-md border border-border bg-background text-accent-ink">
                     <Icon className="size-5" />
@@ -167,7 +216,9 @@ function DownloadPage() {
                 <p className="eyebrow relative mt-10">Option 0{i + 1}</p>
                 <h2 className="relative mt-3 text-3xl font-semibold">{o.title}</h2>
                 <p className="relative mt-2 text-sm text-muted-foreground">{o.product}</p>
-                <p className="relative mt-6 leading-relaxed text-muted-foreground">{o.description}</p>
+                <p className="relative mt-6 leading-relaxed text-muted-foreground">
+                  {o.description}
+                </p>
                 <dl className="relative mt-8 grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 border-t border-border pt-6 text-sm">
                   <dt className="text-muted-foreground">Datei</dt>
                   <dd className="break-all font-mono text-xs leading-5">{o.file}</dd>
@@ -227,10 +278,17 @@ function DownloadPage() {
                     item.warn ? "border-warning/40 bg-warning/5" : "border-border bg-background",
                   )}
                 >
-                  <Icon className={cn("mt-0.5 size-5 shrink-0", item.warn ? "text-warning" : "text-accent-ink")} />
+                  <Icon
+                    className={cn(
+                      "mt-0.5 size-5 shrink-0",
+                      item.warn ? "text-warning" : "text-accent-ink",
+                    )}
+                  />
                   <div>
                     <h3 className="font-display text-lg font-medium">{item.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                      {item.text}
+                    </p>
                   </div>
                 </Reveal>
               );
@@ -287,7 +345,12 @@ function DownloadPage() {
           <div>
             <SectionHeading eyebrow="Installationsanleitung" title="In vier Schritten startklar." />
             <Reveal className="mt-10">
-              <Accordion type="single" collapsible defaultValue="step-0" className="border-t border-border">
+              <Accordion
+                type="single"
+                collapsible
+                defaultValue="step-0"
+                className="border-t border-border"
+              >
                 {STEPS.map((s, i) => (
                   <AccordionItem key={s.title} value={`step-${i}`} className="border-border">
                     <AccordionTrigger className="gap-4 py-5 text-left hover:no-underline [&[data-state=open]_.num]:bg-primary [&[data-state=open]_.num]:text-primary-foreground">
@@ -307,9 +370,12 @@ function DownloadPage() {
               <div className="mt-6 flex gap-4 rounded-lg border border-border bg-surface-2 p-5 text-sm leading-relaxed text-muted-foreground">
                 <HardDrive className="mt-0.5 size-5 shrink-0 text-accent-ink" />
                 <p>
-                  <span className="font-medium text-foreground">Hinweis zur portablen Version:</span> Lassen Sie alle
-                  entpackten Dateien zusammen in einem Ordner. Die Anwendung benötigt die mitgelieferten
-                  Programmressourcen – verschieben Sie nicht nur die „KFZ Faktura.exe“.
+                  <span className="font-medium text-foreground">
+                    Hinweis zur portablen Version:
+                  </span>{" "}
+                  Lassen Sie alle entpackten Dateien zusammen in einem Ordner. Die Anwendung
+                  benötigt die mitgelieferten Programmressourcen – verschieben Sie nicht nur die
+                  „KFZ Faktura.exe“.
                 </p>
               </div>
             </Reveal>
@@ -321,17 +387,28 @@ function DownloadPage() {
       <section className="theme-paper py-24 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-16 px-5 md:px-8 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
           <div>
-            <SectionHeading eyebrow="Systemanforderungen" title="Was Ihr Rechner mitbringen sollte." />
+            <SectionHeading
+              eyebrow="Systemanforderungen"
+              title="Was Ihr Rechner mitbringen sollte."
+            />
             <Reveal className="mt-10 overflow-hidden rounded-lg border border-border bg-card">
               <table className="w-full text-sm">
                 <caption className="sr-only">Systemanforderungen für KFZ Faktura</caption>
                 <tbody className="divide-y divide-border">
                   {REQUIREMENTS.map(([k, v, verified]) => (
                     <tr key={k}>
-                      <th scope="row" className="w-1/3 px-5 py-4 text-left font-normal text-muted-foreground">
+                      <th
+                        scope="row"
+                        className="w-1/3 px-5 py-4 text-left font-normal text-muted-foreground"
+                      >
                         {k}
                       </th>
-                      <td className={cn("px-5 py-4", verified ? "font-medium" : "font-mono text-xs text-muted-foreground")}>
+                      <td
+                        className={cn(
+                          "px-5 py-4",
+                          verified ? "font-medium" : "font-mono text-xs text-muted-foreground",
+                        )}
+                      >
                         {v}
                       </td>
                     </tr>
@@ -340,7 +417,8 @@ function DownloadPage() {
               </table>
             </Reveal>
             <p className="mt-4 text-xs text-muted-foreground">
-              Mit [WIRD ERGÄNZT] markierte Angaben werden nach abschließender Prüfung veröffentlicht.
+              Mit [WIRD ERGÄNZT] markierte Angaben werden nach abschließender Prüfung
+              veröffentlicht.
             </p>
           </div>
           <div>
@@ -349,10 +427,12 @@ function DownloadPage() {
               <Tag className="size-5 text-accent-ink" />
               <p className="mt-6 font-display text-2xl font-semibold">Preise auf Anfrage</p>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                Das Lizenzmodell und die Preise für KFZ Faktura werden derzeit festgelegt. Sprechen Sie uns an – wir
-                informieren Sie über Lizenzen und konfigurierte Versionen.
+                Das Lizenzmodell und die Preise für KFZ Faktura werden derzeit festgelegt. Sprechen
+                Sie uns an – wir informieren Sie über Lizenzen und konfigurierte Versionen.
               </p>
-              <p className="mt-4 font-mono text-xs text-muted-foreground">[PREISANGABEN_PLATZHALTER]</p>
+              <p className="mt-4 font-mono text-xs text-muted-foreground">
+                [PREISANGABEN_PLATZHALTER]
+              </p>
               <Link
                 to="/bewertungen"
                 hash="kontakt"

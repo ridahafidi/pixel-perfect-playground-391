@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { SITE } from "@/lib/site";
 import { Logo } from "./Logo";
+import { LanguagePicker } from "./LanguagePicker";
 
 const COLUMNS = [
   {
@@ -65,7 +66,10 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between md:px-8">
           <p>© 2026 KFZ Faktura. Alle Rechte vorbehalten.</p>
-          <p className="font-mono">Werkstattsoftware für Windows</p>
+          <div className="flex items-center gap-4">
+            <p className="font-mono">Werkstattsoftware für Windows</p>
+            <LanguagePicker side="top" />
+          </div>
         </div>
       </div>
     </footer>

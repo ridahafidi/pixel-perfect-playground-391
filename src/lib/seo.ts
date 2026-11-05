@@ -2,8 +2,8 @@ type SeoInput = {
   path: string;
   title: string;
   description: string;
-  origin?: string;
-  noindex?: boolean;
+  origin?: string | undefined;
+  noindex?: boolean | undefined;
 };
 
 /** Builds the per-route head() payload: title, description, OG, Twitter, canonical. */

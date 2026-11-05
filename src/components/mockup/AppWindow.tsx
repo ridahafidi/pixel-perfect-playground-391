@@ -314,7 +314,7 @@ export function VehicleScreen() {
           <div key={n} className="flex items-center justify-between rounded border border-border bg-background/40 px-2.5 py-1.5">
             <span className="font-mono">{n}</span>
             <span className="text-muted-foreground">{t}</span>
-            <Chip tone={tone as "lime" | "muted"}>{n.slice(0, 2)}</Chip>
+            <Chip tone={tone as "lime" | "muted"}>{(n ?? "").slice(0, 2)}</Chip>
           </div>
         ))}
       </div>

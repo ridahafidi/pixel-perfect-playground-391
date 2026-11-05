@@ -57,8 +57,8 @@ const TABS: Tab[] = [
 ];
 
 export function FeatureTabs() {
-  const [active, setActive] = useState(TABS[0].id);
-  const tab = TABS.find((t) => t.id === active) ?? TABS[0];
+  const [active, setActive] = useState<string>("dashboard");
+  const tab = (TABS.find((t) => t.id === active) ?? TABS[0]) as Tab;
 
   return (
     <div>

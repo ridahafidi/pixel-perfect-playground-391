@@ -47,8 +47,7 @@ export const DOWNLOADS = {
 
 export type DownloadOption = (typeof DOWNLOADS)[keyof typeof DOWNLOADS];
 
-export const PORTABLE_SHA256 =
-  "988e17f1667dd903ba75040a1c00ebc0cb77ea5cedb029cc3b5dd38278e5c32c";
+export const PORTABLE_SHA256 = "988e17f1667dd903ba75040a1c00ebc0cb77ea5cedb029cc3b5dd38278e5c32c";
 
 export function isPlaceholderUrl(url: string) {
   return url.trim() === "" || url.startsWith(PLACEHOLDER_URL_PREFIX);
@@ -69,3 +68,25 @@ export type Review = {
  * shows an honest invitation instead of testimonials.
  */
 export const REVIEWS: Review[] = [];
+
+/** New online licensing flow; requires the updated desktop client. */
+export const LICENSE_ACCESS = {
+  title: "Eine E-Mail. Ein Lizenzschlüssel. Ein Rechner.",
+  intro:
+    "Nach bestätigtem Kauf wird Ihre E-Mail-Adresse freigeschaltet. Aktivieren Sie die aktualisierte Desktop-App mit dieser Adresse und Ihrem Lizenzschlüssel.",
+  steps: [
+    {
+      title: "Lizenz erwerben",
+      text: "Kontaktieren Sie uns für den Kauf. Nach bestätigter Zahlung erhalten Sie Ihren persönlichen Lizenzschlüssel.",
+    },
+    {
+      title: "Desktop-App aktivieren",
+      text: "Geben Sie Ihre freigeschaltete E-Mail-Adresse und den Lizenzschlüssel in der aktualisierten Windows-App ein.",
+    },
+    {
+      title: "Auf einem Rechner arbeiten",
+      text: "Die erste Aktivierung bindet die Lizenz an diesen Rechner. Für einen Rechnerwechsel kontaktieren Sie den Support.",
+    },
+  ],
+  note: "Die Online-Aktivierung erfordert Internetzugang und einen aktualisierten Desktop-Client. Bestehende Downloads verwenden bis zum Update weiterhin das bisherige Lizenzverfahren.",
+} as const;

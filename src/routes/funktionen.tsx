@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   AppWindow,
@@ -55,7 +56,7 @@ function PhotoWithWindow({
 }: {
   src: string;
   alt: string;
-  children: React.ReactNode;
+  children: ReactNode;
   active: "ersatzteile" | "reifen";
 }) {
   return (

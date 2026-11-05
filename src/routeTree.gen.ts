@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BewertungenRouteImport } from './routes/bewertungen'
+import { Route as DatenschutzRouteImport } from './routes/datenschutz'
+import { Route as DownloadRouteImport } from './routes/download'
+import { Route as FunktionenRouteImport } from './routes/funktionen'
+import { Route as ImpressumRouteImport } from './routes/impressum'
+import { Route as NutzungsbedingungenRouteImport } from './routes/nutzungsbedingungen'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BewertungenRoute = BewertungenRouteImport.update({
+  id: '/bewertungen',
+  path: '/bewertungen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatenschutzRoute = DatenschutzRouteImport.update({
+  id: '/datenschutz',
+  path: '/datenschutz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DownloadRoute = DownloadRouteImport.update({
+  id: '/download',
+  path: '/download',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FunktionenRoute = FunktionenRouteImport.update({
+  id: '/funktionen',
+  path: '/funktionen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpressumRoute = ImpressumRouteImport.update({
+  id: '/impressum',
+  path: '/impressum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NutzungsbedingungenRoute = NutzungsbedingungenRouteImport.update({
+  id: '/nutzungsbedingungen',
+  path: '/nutzungsbedingungen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bewertungen': typeof BewertungenRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/download': typeof DownloadRoute
+  '/funktionen': typeof FunktionenRoute
+  '/impressum': typeof ImpressumRoute
+  '/nutzungsbedingungen': typeof NutzungsbedingungenRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bewertungen': typeof BewertungenRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/download': typeof DownloadRoute
+  '/funktionen': typeof FunktionenRoute
+  '/impressum': typeof ImpressumRoute
+  '/nutzungsbedingungen': typeof NutzungsbedingungenRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bewertungen': typeof BewertungenRoute
+  '/datenschutz': typeof DatenschutzRoute
+  '/download': typeof DownloadRoute
+  '/funktionen': typeof FunktionenRoute
+  '/impressum': typeof ImpressumRoute
+  '/nutzungsbedingungen': typeof NutzungsbedingungenRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/bewertungen'
+    | '/datenschutz'
+    | '/download'
+    | '/funktionen'
+    | '/impressum'
+    | '/nutzungsbedingungen'
+    | '/robots.txt'
+    | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/bewertungen'
+    | '/datenschutz'
+    | '/download'
+    | '/funktionen'
+    | '/impressum'
+    | '/nutzungsbedingungen'
+    | '/robots.txt'
+    | '/sitemap.xml'
+  id:
+    | '__root__'
+    | '/'
+    | '/bewertungen'
+    | '/datenschutz'
+    | '/download'
+    | '/funktionen'
+    | '/impressum'
+    | '/nutzungsbedingungen'
+    | '/robots.txt'
+    | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BewertungenRoute: typeof BewertungenRoute
+  DatenschutzRoute: typeof DatenschutzRoute
+  DownloadRoute: typeof DownloadRoute
+  FunktionenRoute: typeof FunktionenRoute
+  ImpressumRoute: typeof ImpressumRoute
+  NutzungsbedingungenRoute: typeof NutzungsbedingungenRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bewertungen': {
+      id: '/bewertungen'
+      path: '/bewertungen'
+      fullPath: '/bewertungen'
+      preLoaderRoute: typeof BewertungenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/datenschutz': {
+      id: '/datenschutz'
+      path: '/datenschutz'
+      fullPath: '/datenschutz'
+      preLoaderRoute: typeof DatenschutzRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/download': {
+      id: '/download'
+      path: '/download'
+      fullPath: '/download'
+      preLoaderRoute: typeof DownloadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/funktionen': {
+      id: '/funktionen'
+      path: '/funktionen'
+      fullPath: '/funktionen'
+      preLoaderRoute: typeof FunktionenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impressum': {
+      id: '/impressum'
+      path: '/impressum'
+      fullPath: '/impressum'
+      preLoaderRoute: typeof ImpressumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nutzungsbedingungen': {
+      id: '/nutzungsbedingungen'
+      path: '/nutzungsbedingungen'
+      fullPath: '/nutzungsbedingungen'
+      preLoaderRoute: typeof NutzungsbedingungenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BewertungenRoute: BewertungenRoute,
+  DatenschutzRoute: DatenschutzRoute,
+  DownloadRoute: DownloadRoute,
+  FunktionenRoute: FunktionenRoute,
+  ImpressumRoute: ImpressumRoute,
+  NutzungsbedingungenRoute: NutzungsbedingungenRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

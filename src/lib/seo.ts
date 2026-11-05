@@ -8,7 +8,7 @@ type SeoInput = {
 
 /** Builds the per-route head() payload: title, description, OG, Twitter, canonical. */
 export function seo({ path, title, description, origin, noindex }: SeoInput) {
-  const canonical = origin ? `${origin}${path === "/" ? "" : path}` || origin : undefined;
+  const canonical = origin ? `${origin}${path}` : undefined;
   const meta: Array<Record<string, string>> = [
     { title },
     { name: "description", content: description },

@@ -1,5 +1,6 @@
 import { createServer } from "node:http";
 import { createHmac, randomUUID } from "node:crypto";
+import { createGoogleAuth } from "./google-auth.mjs";
 import { mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -33,6 +34,7 @@ export function createLicenseServer(config) {
   if (config.database !== ":memory:")
     mkdirSync(dirname(resolve(config.database)), { recursive: true, mode: 0o700 });
   const db = openStore(config.database);
+  const googleAuth = createGoogleAuth(db, config);
   const clock = config.clock || (() => Math.floor(Date.now() / 1000));
   function rate(bucket, limit, seconds) {
     const now = clock();
@@ -43,7 +45,7 @@ export function createLicenseServer(config) {
       fail("too-many-attempts", 429);
   }
   function cleanup() {
-    for (const table of ["sessions", "admin_sessions", "challenges"])
+    for (const table of ["sessions", "admin_sessions", "challenges", "google_sessions"])
       db.prepare(`DELETE FROM ${table} WHERE expires_at<=?`).run(clock());
     db.prepare("DELETE FROM rate_limits WHERE reset_at<=?").run(clock());
   }
@@ -142,7 +144,9 @@ export function createLicenseServer(config) {
       }
       const endpoint = route.slice("/api/licensing".length);
       if (endpoint === "/health" && req.method === "GET") response = { ok: true };
-      else if (endpoint === "/admin/login" && req.method === "POST") {
+      else if (endpoint.startsWith("/google/")) {
+        ({ status, response, headers } = await googleAuth.handle(endpoint, req, input, ip, origin, clock, rate));
+      } else if (endpoint === "/admin/login" && req.method === "POST") {
         if (req.headers.origin !== origin) fail("csrf-rejected", 403);
         rate("admin-login:" + ip, 10, 900);
         if (
@@ -359,6 +363,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
     origin: process.env.LICENSE_WEBSITE_ORIGIN,
     jwtSecret: process.env.LICENSE_JWT_SECRET,
     adminEmail: process.env.LICENSE_ADMIN_EMAIL,
+    googleClientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
     adminPasswordHash: process.env.LICENSE_ADMIN_PASSWORD_HASH,
     purchaseSecret: process.env.LICENSE_PURCHASE_SECRET,
     allowHttp: process.env.LICENSE_LOCAL_HTTP === "1",

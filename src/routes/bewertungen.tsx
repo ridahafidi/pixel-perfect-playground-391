@@ -1,3 +1,5 @@
+import { useLanguage } from "@/lib/language";
+import { LocalizedReviews } from "@/components/site/LocalizedPages";
 import { createFileRoute } from "@tanstack/react-router";
 import { LifeBuoy, Lock, Mail } from "lucide-react";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
@@ -30,6 +32,8 @@ const PILLARS = [
 ];
 
 function ReviewsPage() {
+  const { locale } = useLanguage();
+  if (locale !== "de") return <LocalizedReviews />;
   return (
     <>
       {/* HERO */}

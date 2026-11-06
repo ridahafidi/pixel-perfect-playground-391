@@ -1,3 +1,5 @@
+import { useLanguage } from "@/lib/language";
+import { LocalizedFeatures } from "@/components/site/LocalizedPages";
 import type { ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
@@ -84,6 +86,8 @@ function PhotoWithWindow({
 }
 
 function FeaturesPage() {
+  const { locale } = useLanguage();
+  if (locale !== "de") return <LocalizedFeatures />;
   return (
     <>
       {/* HERO */}

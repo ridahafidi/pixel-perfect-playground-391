@@ -16,6 +16,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { BackToTop } from "@/components/site/BackToTop";
 import { Toaster } from "@/components/ui/sonner";
+import { LanguageProvider, usePageViewTracking } from "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -83,13 +84,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#101311" },
-      { title: "KFZ Faktura – Werkstattsoftware für Windows" },
+      { title: "NEXAFLOW – Werkstattsoftware für Windows" },
       {
         name: "description",
-        content: "KFZ Faktura – die Desktop-Software für Kunden, Fahrzeuge, Rechnungen, Ersatzteile und Reifenlager.",
+        content: "NEXAFLOW – die Desktop-Software für Kunden, Fahrzeuge, Rechnungen, Ersatzteile und Reifenlager.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "KFZ Faktura" },
+      { property: "og:site_name", content: "NEXAFLOW" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -125,9 +126,11 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  usePageViewTracking();
 
   return (
     <QueryClientProvider client={queryClient}>
+      <LanguageProvider>
       <a
         href="#inhalt"
         className="sr-only z-[60] rounded-md bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
@@ -142,6 +145,7 @@ function RootComponent() {
       <Footer />
       <BackToTop />
       <Toaster position="bottom-center" theme="dark" />
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

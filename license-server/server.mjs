@@ -142,6 +142,37 @@ export function createLicenseServer(config) {
       }
       const endpoint = route.slice("/api/licensing".length);
       if (endpoint === "/health" && req.method === "GET") response = { ok: true };
+      else if (endpoint === "/track" && req.method === "POST") {
+        rate("track:" + ip, 120, 60);
+        const path = typeof input.path === "string" ? input.path.slice(0, 200) : "";
+        if (!/^\/[\w\-./]*$/.test(path)) fail("invalid-path");
+        const day = new Date(clock() * 1000).toISOString().slice(0, 10);
+        const visitor = hash(ip + "|" + day + "|" + String(req.headers["user-agent"] || "").slice(0, 300));
+        db.prepare(
+          "INSERT INTO page_views (day,path,visitor_hash) VALUES (?,?,?) ON CONFLICT(day,path,visitor_hash) DO UPDATE SET hits=hits+1",
+        ).run(day, path, visitor);
+        response = { ok: true };
+      } else if (endpoint === "/admin/analytics" && req.method === "GET") {
+        admin(req);
+        const since = new Date((clock() - 29 * 86400) * 1000).toISOString().slice(0, 10);
+        response = {
+          days: db
+            .prepare(
+              "SELECT day, SUM(hits) AS views, COUNT(DISTINCT visitor_hash) AS visitors FROM page_views WHERE day>=? GROUP BY day ORDER BY day",
+            )
+            .all(since),
+          pages: db
+            .prepare(
+              "SELECT path, SUM(hits) AS views FROM page_views WHERE day>=? GROUP BY path ORDER BY views DESC LIMIT 10",
+            )
+            .all(since),
+          totals: db
+            .prepare(
+              "SELECT COALESCE(SUM(hits),0) AS views, COUNT(DISTINCT visitor_hash) AS visitors FROM page_views WHERE day>=?",
+            )
+            .get(since),
+        };
+      }
       else if (endpoint === "/admin/login" && req.method === "POST") {
         if (req.headers.origin !== origin) fail("csrf-rejected", 403);
         rate("admin-login:" + ip, 10, 900);

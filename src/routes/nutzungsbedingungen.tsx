@@ -8,8 +8,8 @@ export const Route = createFileRoute("/nutzungsbedingungen")({
   head: ({ loaderData }) =>
     seo({
       path: "/nutzungsbedingungen",
-      title: "Nutzungsbedingungen – KFZ Faktura",
-      description: "Nutzungs- und Lizenzbedingungen für die Software KFZ Faktura.",
+      title: "Nutzungsbedingungen – NEXAFLOW",
+      description: "Nutzungs- und Lizenzbedingungen für die Software NEXAFLOW.",
       origin: loaderData,
       noindex: true,
     }),

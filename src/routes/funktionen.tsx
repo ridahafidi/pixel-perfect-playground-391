@@ -23,9 +23,9 @@ export const Route = createFileRoute("/funktionen")({
   head: ({ loaderData }) =>
     seo({
       path: "/funktionen",
-      title: "Funktionen – KFZ Faktura Werkstattsoftware",
+      title: "Funktionen – NEXAFLOW Werkstattsoftware",
       description:
-        "Entdecken Sie Dashboard, Kundenverwaltung, Fahrzeugverwaltung, Rechnungen, Ersatzteile und Reifenlager in KFZ Faktura.",
+        "Entdecken Sie Dashboard, Kundenverwaltung, Fahrzeugverwaltung, Rechnungen, Ersatzteile und Reifenlager in NEXAFLOW.",
       origin: loaderData,
     }),
   component: FeaturesPage,
@@ -104,7 +104,7 @@ function FeaturesPage() {
               Alles, was Ihre Werkstattverwaltung braucht.
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              Von der Kundenverwaltung bis zur Reifenlagerorganisation: KFZ Faktura verbindet wichtige
+              Von der Kundenverwaltung bis zur Reifenlagerorganisation: NEXAFLOW verbindet wichtige
               Verwaltungsbereiche in einer übersichtlichen Desktop-Anwendung.
             </p>
           </div>
@@ -263,7 +263,7 @@ function FeaturesPage() {
       <div className="border-t border-border">
         <CtaBand
           title="Alle Module. Eine Anwendung."
-          text="Laden Sie KFZ Faktura herunter und bringen Sie Kunden, Fahrzeuge, Dokumente und Lager unter ein Dach."
+          text="Laden Sie NEXAFLOW herunter und bringen Sie Kunden, Fahrzeuge, Dokumente und Lager unter ein Dach."
         />
       </div>
     </>

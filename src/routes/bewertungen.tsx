@@ -15,9 +15,9 @@ export const Route = createFileRoute("/bewertungen")({
   head: ({ loaderData }) =>
     seo({
       path: "/bewertungen",
-      title: "Bewertungen & Über KFZ Faktura",
+      title: "Bewertungen & Über NEXAFLOW",
       description:
-        "Erfahren Sie mehr über KFZ Faktura und entdecken Sie authentische Erfahrungen und Produktinformationen.",
+        "Erfahren Sie mehr über NEXAFLOW und entdecken Sie authentische Erfahrungen und Produktinformationen.",
       origin: loaderData,
     }),
   component: ReviewsPage,
@@ -43,7 +43,7 @@ function ReviewsPage() {
               Vertrauen entsteht durch gute Werkzeuge.
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              Eine Software sollte den Arbeitsalltag einfacher machen. Entdecken Sie KFZ Faktura und erfahren Sie mehr
+              Eine Software sollte den Arbeitsalltag einfacher machen. Entdecken Sie NEXAFLOW und erfahren Sie mehr
               über das Produkt.
             </p>
           </div>
@@ -72,12 +72,12 @@ function ReviewsPage() {
           </div>
           <div className="px-5 py-24 md:px-12 lg:px-16 lg:py-32">
             <SectionHeading
-              eyebrow="Über KFZ Faktura"
+              eyebrow="Über NEXAFLOW"
               title="Entwickelt für die Anforderungen moderner Werkstätten."
             />
             <Reveal>
               <p className="mt-8 text-lg leading-relaxed text-muted-foreground">
-                KFZ Faktura wurde entwickelt, um zentrale Verwaltungsaufgaben von Kfz-Werkstätten in einer
+                NEXAFLOW wurde entwickelt, um zentrale Verwaltungsaufgaben von Kfz-Werkstätten in einer
                 übersichtlichen Desktop-Anwendung zusammenzuführen. Von Kunden- und Fahrzeugdaten über Rechnungen bis
                 hin zu Lagerinformationen – alles mit dem Ziel, den täglichen Verwaltungsaufwand besser zu
                 organisieren.
@@ -105,7 +105,7 @@ function ReviewsPage() {
             <SectionHeading
               eyebrow="Kontakt"
               title="Sprechen Sie mit uns."
-              intro="Fragen zu Funktionen, Lizenzen oder einer konfigurierten Version? Schreiben Sie uns – oder teilen Sie Ihre Erfahrung mit KFZ Faktura."
+              intro="Fragen zu Funktionen, Lizenzen oder einer konfigurierten Version? Schreiben Sie uns – oder teilen Sie Ihre Erfahrung mit NEXAFLOW."
             />
             <div className="mt-12 space-y-4">
               <div className="flex gap-4 rounded-lg border border-border bg-card p-5">

@@ -31,9 +31,9 @@ export const Route = createFileRoute("/download")({
   head: ({ loaderData }) =>
     seo({
       path: "/download",
-      title: "KFZ Faktura herunterladen – Windows Software",
+      title: "NEXAFLOW herunterladen – Windows Software",
       description:
-        "Laden Sie KFZ Faktura für Windows x64 herunter. Entdecken Sie die portable Version und den klassischen Installer.",
+        "Laden Sie NEXAFLOW für Windows x64 herunter. Entdecken Sie die portable Version und den klassischen Installer.",
       origin: loaderData,
     }),
   component: DownloadPage,
@@ -75,7 +75,7 @@ const REQUIREMENTS: [string, string, boolean][] = [
 const FAQ: FaqItem[] = [
   {
     q: "Was ist der Unterschied zwischen portabler Version und Installer?",
-    a: "Die portable Version wird als ZIP-Archiv geliefert und nach dem Entpacken direkt gestartet – ohne klassische Installation. Der Installer richtet KFZ Faktura geführt auf Ihrem System ein. Funktional handelt es sich um dieselbe Anwendung in Version 1.0.0.",
+    a: "Die portable Version wird als ZIP-Archiv geliefert und nach dem Entpacken direkt gestartet – ohne klassische Installation. Der Installer richtet NEXAFLOW geführt auf Ihrem System ein. Funktional handelt es sich um dieselbe Anwendung in Version 1.0.0.",
   },
   {
     q: "Welche Windows-Architektur wird unterstützt?",
@@ -136,7 +136,7 @@ function DownloadPage() {
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
               <p className="eyebrow mb-6">Download · Windows x64</p>
               <h1 className="text-balance text-5xl font-semibold leading-[1] md:text-7xl">
-                Starten Sie mit KFZ Faktura.
+                Starten Sie mit NEXAFLOW.
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
                 Entdecken Sie eine spezialisierte Desktop-Lösung für die Organisation Ihres
@@ -180,11 +180,10 @@ function DownloadPage() {
           </div>
           <p className="mt-6 text-sm text-muted-foreground">{LICENSE_ACCESS.note}</p>
           <Link
-            to="/bewertungen"
-            hash="kontakt"
+            to="/kaufen"
             className="mt-6 inline-flex rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground"
           >
-            Lizenz erwerben / Kontakt
+            Lizenz kaufen – $150
           </Link>
         </div>
       </section>
@@ -393,7 +392,7 @@ function DownloadPage() {
             />
             <Reveal className="mt-10 overflow-hidden rounded-lg border border-border bg-card">
               <table className="w-full text-sm">
-                <caption className="sr-only">Systemanforderungen für KFZ Faktura</caption>
+                <caption className="sr-only">Systemanforderungen für NEXAFLOW</caption>
                 <tbody className="divide-y divide-border">
                   {REQUIREMENTS.map(([k, v, verified]) => (
                     <tr key={k}>
@@ -425,20 +424,16 @@ function DownloadPage() {
             <SectionHeading eyebrow="Preise" title="Lizenzmodell." />
             <Reveal className="mt-10 rounded-lg border border-border bg-card p-8">
               <Tag className="size-5 text-accent-ink" />
-              <p className="mt-6 font-display text-2xl font-semibold">Preise auf Anfrage</p>
-              <p className="mt-3 leading-relaxed text-muted-foreground">
-                Das Lizenzmodell und die Preise für KFZ Faktura werden derzeit festgelegt. Sprechen
-                Sie uns an – wir informieren Sie über Lizenzen und konfigurierte Versionen.
-              </p>
-              <p className="mt-4 font-mono text-xs text-muted-foreground">
-                [PREISANGABEN_PLATZHALTER]
+              <p className="mt-6 font-display text-5xl font-semibold">$150</p>
+              <p className="mt-2 text-sm text-muted-foreground">Einmalzahlung · 1 Lizenz für 1 Rechner</p>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                Nach bestätigter Zahlung erhalten Sie Ihren persönlichen Lizenzschlüssel per E-Mail.
               </p>
               <Link
-                to="/bewertungen"
-                hash="kontakt"
-                className="mt-8 inline-flex h-11 items-center rounded-md bg-foreground px-5 text-sm font-medium text-background transition-colors hover:bg-foreground/85"
+                to="/kaufen"
+                className="mt-8 inline-flex h-11 items-center rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-deep"
               >
-                Lizenz anfragen
+                Jetzt kaufen
               </Link>
             </Reveal>
           </div>

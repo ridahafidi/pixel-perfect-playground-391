@@ -16,6 +16,7 @@ import { Route as DatenschutzRouteImport } from './routes/datenschutz'
 import { Route as DownloadRouteImport } from './routes/download'
 import { Route as FunktionenRouteImport } from './routes/funktionen'
 import { Route as ImpressumRouteImport } from './routes/impressum'
+import { Route as KaufenRouteImport } from './routes/kaufen'
 import { Route as NutzungsbedingungenRouteImport } from './routes/nutzungsbedingungen'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -55,6 +56,11 @@ const ImpressumRoute = ImpressumRouteImport.update({
   path: '/impressum',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KaufenRoute = KaufenRouteImport.update({
+  id: '/kaufen',
+  path: '/kaufen',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NutzungsbedingungenRoute = NutzungsbedingungenRouteImport.update({
   id: '/nutzungsbedingungen',
   path: '/nutzungsbedingungen',
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/download': typeof DownloadRoute
   '/funktionen': typeof FunktionenRoute
   '/impressum': typeof ImpressumRoute
+  '/kaufen': typeof KaufenRoute
   '/nutzungsbedingungen': typeof NutzungsbedingungenRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/download': typeof DownloadRoute
   '/funktionen': typeof FunktionenRoute
   '/impressum': typeof ImpressumRoute
+  '/kaufen': typeof KaufenRoute
   '/nutzungsbedingungen': typeof NutzungsbedingungenRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/download': typeof DownloadRoute
   '/funktionen': typeof FunktionenRoute
   '/impressum': typeof ImpressumRoute
+  '/kaufen': typeof KaufenRoute
   '/nutzungsbedingungen': typeof NutzungsbedingungenRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/download'
     | '/funktionen'
     | '/impressum'
+    | '/kaufen'
     | '/nutzungsbedingungen'
     | '/robots.txt'
     | '/sitemap.xml'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/download'
     | '/funktionen'
     | '/impressum'
+    | '/kaufen'
     | '/nutzungsbedingungen'
     | '/robots.txt'
     | '/sitemap.xml'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/download'
     | '/funktionen'
     | '/impressum'
+    | '/kaufen'
     | '/nutzungsbedingungen'
     | '/robots.txt'
     | '/sitemap.xml'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   DownloadRoute: typeof DownloadRoute
   FunktionenRoute: typeof FunktionenRoute
   ImpressumRoute: typeof ImpressumRoute
+  KaufenRoute: typeof KaufenRoute
   NutzungsbedingungenRoute: typeof NutzungsbedingungenRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -211,6 +224,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImpressumRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kaufen': {
+      id: '/kaufen'
+      path: '/kaufen'
+      fullPath: '/kaufen'
+      preLoaderRoute: typeof KaufenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/nutzungsbedingungen': {
       id: '/nutzungsbedingungen'
       path: '/nutzungsbedingungen'
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   DownloadRoute: DownloadRoute,
   FunktionenRoute: FunktionenRoute,
   ImpressumRoute: ImpressumRoute,
+  KaufenRoute: KaufenRoute,
   NutzungsbedingungenRoute: NutzungsbedingungenRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

@@ -91,7 +91,7 @@ export function ReviewsSection() {
             Hier entstehen die ersten echten Erfahrungsberichte.
           </h3>
           <p className="mt-5 max-w-lg leading-relaxed text-muted-foreground">
-            KFZ Faktura ist ein junges Produkt. Wir veröffentlichen ausschließlich echte, nachvollziehbare Bewertungen
+            NEXAFLOW ist ein junges Produkt. Wir veröffentlichen ausschließlich echte, nachvollziehbare Bewertungen
             von Werkstätten, die die Software einsetzen – keine erfundenen Zitate, keine geschönten Zahlen.
           </p>
           <Button asChild variant="hero" size="xl" className="mt-10">

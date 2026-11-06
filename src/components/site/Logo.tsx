@@ -17,12 +17,12 @@ export function Logo({ className }: { className?: string }) {
   return (
     <Link
       to="/"
-      aria-label="KFZ Faktura – zur Startseite"
+      aria-label="NEXAFLOW – zur Startseite"
       className={cn("group flex items-center gap-2.5", className)}
     >
       <LogoMark className="transition-transform duration-300 group-hover:-rotate-6" />
       <span className="font-display text-[0.95rem] font-bold tracking-[0.14em]">
-        KFZ <span className="text-accent-ink">FAKTURA</span>
+        NEXA<span className="text-accent-ink">FLOW</span>
       </span>
     </Link>
   );

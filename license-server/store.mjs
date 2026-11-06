@@ -15,6 +15,7 @@ export function openStore(filename) {
     CREATE TABLE IF NOT EXISTS challenges (id TEXT PRIMARY KEY, nonce_hash TEXT NOT NULL, expires_at INTEGER NOT NULL);
     CREATE TABLE IF NOT EXISTS purchase_events (event_id TEXT PRIMARY KEY, order_id TEXT NOT NULL, license_id TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS rate_limits (bucket TEXT PRIMARY KEY, hits INTEGER NOT NULL, reset_at INTEGER NOT NULL);
+    CREATE TABLE IF NOT EXISTS page_views (day TEXT NOT NULL, path TEXT NOT NULL, visitor_hash TEXT NOT NULL, hits INTEGER NOT NULL DEFAULT 1, PRIMARY KEY (day, path, visitor_hash));
     CREATE TABLE IF NOT EXISTS audit (id TEXT PRIMARY KEY, action TEXT NOT NULL, license_id TEXT, actor TEXT NOT NULL, created_at INTEGER NOT NULL);
   `);
   return db;

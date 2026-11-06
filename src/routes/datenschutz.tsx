@@ -8,8 +8,8 @@ export const Route = createFileRoute("/datenschutz")({
   head: ({ loaderData }) =>
     seo({
       path: "/datenschutz",
-      title: "Datenschutzerklärung – KFZ Faktura",
-      description: "Informationen zur Verarbeitung personenbezogener Daten auf der Website von KFZ Faktura.",
+      title: "Datenschutzerklärung – NEXAFLOW",
+      description: "Informationen zur Verarbeitung personenbezogener Daten auf der Website von NEXAFLOW.",
       origin: loaderData,
       noindex: true,
     }),

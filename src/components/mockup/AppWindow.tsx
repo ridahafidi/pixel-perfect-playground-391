@@ -40,7 +40,7 @@ type Props = {
   compact?: boolean;
 };
 
-/** Illustrative desktop window frame, based on the documented KFZ Faktura modules. */
+/** Illustrative desktop window frame, based on the documented NEXAFLOW modules. */
 export function AppWindow({ active, children, className, compact }: Props) {
   return (
     <div
@@ -49,13 +49,13 @@ export function AppWindow({ active, children, className, compact }: Props) {
         className,
       )}
       role="img"
-      aria-label={`Illustrative Darstellung der KFZ Faktura Oberfläche: ${TITLES[active]}`}
+      aria-label={`Illustrative Darstellung der NEXAFLOW Oberfläche: ${TITLES[active]}`}
     >
       {/* Title bar */}
       <div className="flex h-8 items-center justify-between border-b border-border bg-background/60 pl-3 text-[10px] text-muted-foreground">
         <div className="flex items-center gap-2">
           <span className="size-2.5 rounded-[2px] bg-primary" />
-          <span className="font-medium tracking-wide">KFZ Faktura</span>
+          <span className="font-medium tracking-wide">NEXAFLOW</span>
           <span className="hidden opacity-60 sm:inline">— {TITLES[active]}</span>
         </div>
         <div className="flex h-full items-stretch">

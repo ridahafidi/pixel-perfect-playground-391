@@ -15,8 +15,8 @@ type Props = {
 /** Reusable download call-to-action band. */
 export function CtaBand({
   title = "Bringen Sie Struktur in Ihren Werkstattalltag.",
-  text = "Entdecken Sie KFZ Faktura und organisieren Sie Ihre Werkstattverwaltung mit einer spezialisierten Desktop-Lösung.",
-  ctaLabel = "KFZ Faktura herunterladen",
+  text = "Entdecken Sie NEXAFLOW und organisieren Sie Ihre Werkstattverwaltung mit einer spezialisierten Desktop-Lösung.",
+  ctaLabel = "NEXAFLOW herunterladen",
   showDetailsLink = true,
 }: Props) {
   return (

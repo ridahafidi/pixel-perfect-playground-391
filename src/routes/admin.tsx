@@ -10,6 +10,7 @@ import {
   Copy,
   RefreshCw,
   Ban,
+  BarChart3,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -41,6 +42,12 @@ type License = {
   expires_at: number | null;
   last_seen_at: number | null;
   activated: boolean;
+  order_id: string | null;
+};
+type Analytics = {
+  days: { day: string; views: number; visitors: number }[];
+  pages: { path: string; views: number }[];
+  totals: { views: number; visitors: number };
 };
 const messages: Record<string, string> = {
   "admin-login-required": "Please sign in to manage licenses.",
@@ -63,7 +70,8 @@ export function LicenseAdmin() {
     [busy, setBusy] = useState(false),
     [query, setQuery] = useState("");
   const [issued, setIssued] = useState<{ email: string; key: string } | null>(null),
-    [notice, setNotice] = useState("");
+    [notice, setNotice] = useState(""),
+    [analytics, setAnalytics] = useState<Analytics | null>(null);
   async function api(path: string, body?: unknown, csrf?: string) {
     const response = await fetch("/api/licensing" + path, {
       method: body === undefined ? "GET" : "POST",
@@ -97,6 +105,9 @@ export function LicenseAdmin() {
   async function refresh() {
     const data = await api("/admin/licenses");
     setLicenses(data.licenses);
+    api("/admin/analytics")
+      .then(setAnalytics)
+      .catch(() => setAnalytics(null));
   }
   useEffect(() => {
     if (session) refresh().catch((e) => setError(e.message));
@@ -278,6 +289,53 @@ export function LicenseAdmin() {
                 </div>
               ))}
             </div>
+            <div className="mb-8 rounded-xl border border-border bg-surface-2 p-6">
+              <div className="flex flex-wrap items-baseline justify-between gap-3">
+                <h2 className="flex items-center gap-2 text-xl font-semibold">
+                  <BarChart3 className="size-5 text-accent-ink" />
+                  Website analytics · last 30 days
+                </h2>
+                {analytics && (
+                  <p className="text-sm text-muted-foreground">
+                    {analytics.totals.views} page views · {analytics.totals.visitors} daily visitors ·{" "}
+                    {licenses.filter((l) => l.order_id).length} purchases
+                  </p>
+                )}
+              </div>
+              {!analytics ? (
+                <p className="mt-4 text-sm text-muted-foreground">No analytics data available yet.</p>
+              ) : (
+                <div className="mt-6 grid gap-8 lg:grid-cols-[2fr_1fr]">
+                  <div className="flex h-40 items-end gap-1" aria-label="Daily page views">
+                    {analytics.days.length === 0 && (
+                      <p className="text-sm text-muted-foreground">No visits recorded yet.</p>
+                    )}
+                    {analytics.days.map((d) => {
+                      const max = Math.max(...analytics.days.map((x) => x.views), 1);
+                      return (
+                        <div
+                          key={d.day}
+                          title={`${d.day}: ${d.views} views, ${d.visitors} visitors`}
+                          className="flex-1 rounded-t bg-primary/80"
+                          style={{ height: `${Math.max(4, (d.views / max) * 100)}%` }}
+                        />
+                      );
+                    })}
+                  </div>
+                  <div>
+                    <p className="mb-3 text-sm font-medium">Top pages</p>
+                    <ul className="space-y-2 text-sm">
+                      {analytics.pages.map((p) => (
+                        <li key={p.path} className="flex justify-between gap-3">
+                          <span className="truncate font-mono text-muted-foreground">{p.path}</span>
+                          <span>{p.views}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
             {issued && (
               <div
                 role="status"
@@ -369,7 +427,7 @@ export function LicenseAdmin() {
                 </caption>
                 <thead className="bg-surface-2">
                   <tr>
-                    {["Customer", "Status", "Computer", "Key", "Actions"].map((h) => (
+                    {["Customer", "Source", "Status", "Key in use", "Key", "Actions"].map((h) => (
                       <th key={h} className="whitespace-nowrap p-4 font-medium">
                         {h}
                       </th>
@@ -383,6 +441,12 @@ export function LicenseAdmin() {
                         <p className="font-medium">{l.customer}</p>
                         <p className="mt-1 text-muted-foreground">{l.email}</p>
                       </td>
+                      <td className="p-4 text-xs">
+                        <p>{l.order_id ? "Purchased" : "Manual"}</p>
+                        <p className="mt-1 text-muted-foreground">
+                          {new Date(l.created_at * 1000).toLocaleDateString()}
+                        </p>
+                      </td>
                       <td className="p-4">
                         <span className="rounded border border-border px-2 py-1 text-xs">
                           {l.status === "REVOKED"
@@ -393,7 +457,7 @@ export function LicenseAdmin() {
                         </span>
                       </td>
                       <td className="p-4">
-                        <p>{l.activated ? "1 / 1 activated" : "Not activated"}</p>
+                        <p>{l.activated ? "In use (1 / 1 computer)" : "Not in use yet"}</p>
                         {l.machine_hash && (
                           <code className="mt-1 block text-xs text-muted-foreground">
                             …{l.machine_hash.slice(-12)}

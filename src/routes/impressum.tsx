@@ -8,8 +8,8 @@ export const Route = createFileRoute("/impressum")({
   head: ({ loaderData }) =>
     seo({
       path: "/impressum",
-      title: "Impressum – KFZ Faktura",
-      description: "Impressum und Anbieterkennzeichnung von KFZ Faktura.",
+      title: "Impressum – NEXAFLOW",
+      description: "Impressum und Anbieterkennzeichnung von NEXAFLOW.",
       origin: loaderData,
       noindex: true,
     }),

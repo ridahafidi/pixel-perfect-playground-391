@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Check, Globe, ChevronDown } from "lucide-react";
-import { toast } from "sonner";
+import { useLanguage } from "@/lib/i18n";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
@@ -15,35 +15,31 @@ export type Language = {
 /** Most-used market languages. Only German content exists today. */
 export const LANGUAGES: Language[] = [
   { code: "de", native: "Deutsch", label: "German", available: true },
-  { code: "en", native: "English", label: "English", available: false },
-  { code: "fr", native: "Français", label: "French", available: false },
-  { code: "es", native: "Español", label: "Spanish", available: false },
-  { code: "it", native: "Italiano", label: "Italian", available: false },
-  { code: "pt", native: "Português", label: "Portuguese", available: false },
-  { code: "nl", native: "Nederlands", label: "Dutch", available: false },
-  { code: "pl", native: "Polski", label: "Polish", available: false },
-  { code: "tr", native: "Türkçe", label: "Turkish", available: false },
-  { code: "ro", native: "Română", label: "Romanian", available: false },
-  { code: "ru", native: "Русский", label: "Russian", available: false },
-  { code: "uk", native: "Українська", label: "Ukrainian", available: false },
-  { code: "ar", native: "العربية", label: "Arabic", available: false, rtl: true },
-  { code: "zh", native: "中文", label: "Chinese", available: false },
+  { code: "en", native: "English", label: "English", available: true },
+  { code: "fr", native: "Français", label: "French", available: true },
+  { code: "es", native: "Español", label: "Spanish", available: true },
+  { code: "it", native: "Italiano", label: "Italian", available: true },
+  { code: "pt", native: "Português", label: "Portuguese", available: true },
+  { code: "nl", native: "Nederlands", label: "Dutch", available: true },
+  { code: "pl", native: "Polski", label: "Polish", available: true },
+  { code: "tr", native: "Türkçe", label: "Turkish", available: true },
+  { code: "ro", native: "Română", label: "Romanian", available: true },
+  { code: "ru", native: "Русский", label: "Russian", available: true },
+  { code: "uk", native: "Українська", label: "Ukrainian", available: true },
+  { code: "ar", native: "العربية", label: "Arabic", available: true, rtl: true },
+  { code: "zh-CN", native: "中文", label: "Chinese", available: true },
 ];
 
 type Props = { className?: string; align?: "start" | "end"; side?: "top" | "bottom"; full?: boolean };
 
 export function LanguagePicker({ className, align = "end", side = "bottom", full }: Props) {
   const [open, setOpen] = useState(false);
-  const current = LANGUAGES[0] as Language;
+  const { lang: currentCode, setLang } = useLanguage();
+  const current = (LANGUAGES.find((l) => l.code === currentCode) ?? LANGUAGES[0]) as Language;
 
   const choose = (lang: Language) => {
-    if (lang.available) {
-      setOpen(false);
-      return;
-    }
-    toast(`${lang.native} – in Vorbereitung`, {
-      description: "Diese Sprachversion wird derzeit erstellt. Die Website ist aktuell auf Deutsch verfügbar.",
-    });
+    setLang(lang.code);
+    setOpen(false);
   };
 
   return (
@@ -60,7 +56,7 @@ export function LanguagePicker({ className, align = "end", side = "bottom", full
         >
           <span className="flex items-center gap-2">
             <Globe className="size-4" />
-            <span className="font-mono uppercase tracking-[0.14em]">{current.code}</span>
+            <span className="font-mono uppercase tracking-[0.14em]">{current.code.slice(0, 2)}</span>
             {full && <span className="text-foreground">{current.native}</span>}
           </span>
           <ChevronDown className="size-3.5 transition-transform group-data-[state=open]:rotate-180" />
@@ -102,14 +98,14 @@ export function LanguagePicker({ className, align = "end", side = "bottom", full
                         : "border-border text-muted-foreground group-hover:border-foreground/40",
                     )}
                   >
-                    {lang.code}
+                    {lang.code.slice(0, 2)}
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className={cn("block truncate text-sm", active ? "font-medium text-foreground" : "text-foreground/90")}>
+                    <span data-no-translate className={cn("block truncate text-sm", active ? "font-medium text-foreground" : "text-foreground/90")}>
                       {lang.native}
                     </span>
-                    <span className="block truncate text-[11px] text-muted-foreground" dir="ltr">
-                      {lang.available ? lang.label : "Bald verfügbar"}
+                    <span data-no-translate className="block truncate text-[11px] text-muted-foreground" dir="ltr">
+                      {lang.label}
                     </span>
                   </span>
                   {active && <Check className="size-4 shrink-0 text-accent-ink" />}
@@ -119,7 +115,7 @@ export function LanguagePicker({ className, align = "end", side = "bottom", full
           })}
         </ul>
         <p className="border-t border-border px-5 py-3 text-[11px] leading-relaxed text-muted-foreground">
-          Die Website ist derzeit auf Deutsch verfügbar. Weitere Sprachversionen folgen.
+          Ihre Auswahl wird auf diesem Gerät gespeichert.
         </p>
       </PopoverContent>
     </Popover>

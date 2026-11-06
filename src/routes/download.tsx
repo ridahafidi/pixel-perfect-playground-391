@@ -1,3 +1,5 @@
+import { useLanguage } from "@/lib/language";
+import { LocalizedDownload } from "@/components/site/LocalizedPages";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   AlertTriangle,
@@ -121,6 +123,8 @@ const FAQ: FaqItem[] = [
 ];
 
 function DownloadPage() {
+  const { locale } = useLanguage();
+  if (locale !== "de") return <LocalizedDownload />;
   return (
     <>
       {/* HERO */}

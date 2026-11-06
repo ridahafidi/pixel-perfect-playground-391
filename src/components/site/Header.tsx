@@ -4,11 +4,13 @@ import { Menu, X, Download } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { NAV_ITEMS } from "@/lib/site";
+import { useLanguage } from "@/lib/language";
 import { cn } from "@/lib/utils";
 import { Logo } from "./Logo";
 import { LanguagePicker } from "./LanguagePicker";
 
 export function Header() {
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -31,7 +33,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:h-[4.5rem] md:px-8">
         <Logo />
 
-        <nav aria-label="Hauptnavigation" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label={t("home")} className="hidden items-center gap-1 lg:flex">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.to}
@@ -41,7 +43,7 @@ export function Header() {
             >
               {({ isActive }) => (
                 <>
-                  {item.label}
+                  {t(({"/":"home","/funktionen":"features","/download":"pricing","/bewertungen":"reviews"} as const)[item.to])}
                   <span
                     className={cn(
                       "absolute inset-x-3.5 -bottom-px h-px origin-left bg-primary transition-transform duration-300",
@@ -59,7 +61,7 @@ export function Header() {
           <Button asChild variant="hero" size="sm" className="hidden h-9 px-4 tracking-wide sm:inline-flex">
             <Link to="/download">
               <Download />
-              SOFTWARE HERUNTERLADEN
+              {t("download")}
             </Link>
           </Button>
 
@@ -104,7 +106,7 @@ export function Header() {
                 <Button asChild variant="hero" size="xl" className="mt-3">
                   <Link to="/download" onClick={() => setOpen(false)}>
                     <Download />
-                    Software herunterladen
+                    {t("download")}
                   </Link>
                 </Button>
               </nav>

@@ -12,6 +12,8 @@ import { getRequestOrigin } from "@/lib/origin.functions";
 import { seo } from "@/lib/seo";
 import { DOWNLOADS, SITE } from "@/lib/site";
 import werkstattHalle from "@/assets/werkstatt-halle.jpg";
+import { useLanguage } from "@/lib/language";
+import { homeHero } from "@/lib/home-translations";
 
 const TITLE = "NexaFlow – Werkstattsoftware für moderne Kfz-Betriebe";
 const DESCRIPTION =
@@ -137,6 +139,8 @@ const FAQ: FaqItem[] = [
 ];
 
 function HomePage() {
+  const { locale } = useLanguage();
+  const h = (key: Parameters<typeof homeHero>[1]) => homeHero(locale, key);
   return (
     <>
       {/* HERO */}
@@ -146,32 +150,30 @@ function HomePage() {
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
             <p className="eyebrow flex items-center gap-3">
               <span className="size-1.5 animate-pulse-dot rounded-full bg-primary" />
-              Werkstattmanagement neu gedacht
+              {h("eyebrow")}
             </p>
             <h1 className="mt-7 text-balance text-5xl font-semibold leading-[0.98] sm:text-6xl xl:text-7xl">
-              Ihre Werkstatt.
+              {h("line1")}
               <br />
-              Ihr Überblick.
+              {h("line2")}
               <br />
-              <span className="text-accent-ink">Ihr Erfolg.</span>
+              <span className="text-accent-ink">{h("line3")}</span>
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Verwalten Sie Kunden, Fahrzeuge, Rechnungen, Ersatzteile und Reifenlager an einem zentralen Ort.
-              NexaFlow hilft Ihnen, administrative Abläufe zu vereinfachen – damit Sie sich auf das konzentrieren
-              können, was wirklich zählt: Ihre Werkstatt.
+              {h("description")}
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button asChild variant="hero" size="xl">
                 <Link to="/funktionen">
-                  Jetzt entdecken
+                  {h("explore")}
                   <ArrowRight />
                 </Link>
               </Button>
-              <DownloadButton option={DOWNLOADS.portable} label="Windows-Version herunterladen" variant="line" />
+              <DownloadButton option={DOWNLOADS.portable} label={h("download")} variant="line" />
             </div>
             <p className="mt-8 flex items-center gap-2.5 text-sm text-muted-foreground">
               <ShieldCheck className="size-4 text-accent-ink" />
-              Entwickelt für den professionellen Werkstattalltag.
+              {h("assurance")}
             </p>
           </div>
           <HeroVisual />

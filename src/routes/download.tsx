@@ -31,9 +31,9 @@ export const Route = createFileRoute("/download")({
   head: ({ loaderData }) =>
     seo({
       path: "/download",
-      title: "KFZ Faktura herunterladen – Windows Software",
+      title: "NexaFlow herunterladen – Windows Software",
       description:
-        "Laden Sie KFZ Faktura für Windows x64 herunter. Entdecken Sie die portable Version und den klassischen Installer.",
+        "Laden Sie NexaFlow für Windows x64 herunter. Entdecken Sie die portable Version und den klassischen Installer.",
       origin: loaderData,
     }),
   component: DownloadPage,
@@ -54,8 +54,8 @@ const STEPS = [
     text: "Entpacken Sie das Archiv vollständig in einen Ordner Ihrer Wahl. Beim Installer folgen Sie stattdessen den Schritten des Setup-Assistenten.",
   },
   {
-    title: "KFZ Faktura.exe starten",
-    text: "Starten Sie die Anwendung über „KFZ Faktura.exe“ im entpackten Ordner bzw. über die angelegte Verknüpfung.",
+    title: "NexaFlow.exe starten",
+    text: "Starten Sie die Anwendung über „NexaFlow.exe“ im entpackten Ordner bzw. über die angelegte Verknüpfung.",
   },
   {
     title: "Lizenz & Anmeldung einrichten",
@@ -75,7 +75,7 @@ const REQUIREMENTS: [string, string, boolean][] = [
 const FAQ: FaqItem[] = [
   {
     q: "Was ist der Unterschied zwischen portabler Version und Installer?",
-    a: "Die portable Version wird als ZIP-Archiv geliefert und nach dem Entpacken direkt gestartet – ohne klassische Installation. Der Installer richtet KFZ Faktura geführt auf Ihrem System ein. Funktional handelt es sich um dieselbe Anwendung in Version 1.0.0.",
+    a: "Die portable Version wird als ZIP-Archiv geliefert und nach dem Entpacken direkt gestartet – ohne klassische Installation. Der Installer richtet NexaFlow geführt auf Ihrem System ein. Funktional handelt es sich um dieselbe Anwendung in Version 1.0.0.",
   },
   {
     q: "Welche Windows-Architektur wird unterstützt?",
@@ -136,7 +136,7 @@ function DownloadPage() {
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
               <p className="eyebrow mb-6">Download · Windows x64</p>
               <h1 className="text-balance text-5xl font-semibold leading-[1] md:text-7xl">
-                Starten Sie mit KFZ Faktura.
+                Starten Sie mit NexaFlow.
               </h1>
               <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
                 Entdecken Sie eine spezialisierte Desktop-Lösung für die Organisation Ihres
@@ -375,7 +375,7 @@ function DownloadPage() {
                   </span>{" "}
                   Lassen Sie alle entpackten Dateien zusammen in einem Ordner. Die Anwendung
                   benötigt die mitgelieferten Programmressourcen – verschieben Sie nicht nur die
-                  „KFZ Faktura.exe“.
+                  „NexaFlow.exe“.
                 </p>
               </div>
             </Reveal>
@@ -393,7 +393,7 @@ function DownloadPage() {
             />
             <Reveal className="mt-10 overflow-hidden rounded-lg border border-border bg-card">
               <table className="w-full text-sm">
-                <caption className="sr-only">Systemanforderungen für KFZ Faktura</caption>
+                <caption className="sr-only">Systemanforderungen für NexaFlow</caption>
                 <tbody className="divide-y divide-border">
                   {REQUIREMENTS.map(([k, v, verified]) => (
                     <tr key={k}>
@@ -427,7 +427,7 @@ function DownloadPage() {
               <Tag className="size-5 text-accent-ink" />
               <p className="mt-6 font-display text-2xl font-semibold">Preise auf Anfrage</p>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                Das Lizenzmodell und die Preise für KFZ Faktura werden derzeit festgelegt. Sprechen
+                Das Lizenzmodell und die Preise für NexaFlow werden derzeit festgelegt. Sprechen
                 Sie uns an – wir informieren Sie über Lizenzen und konfigurierte Versionen.
               </p>
               <p className="mt-4 font-mono text-xs text-muted-foreground">

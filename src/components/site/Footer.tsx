@@ -16,7 +16,7 @@ const COLUMNS = [
     title: "Informationen",
     links: [
       { label: "Bewertungen", to: "/bewertungen" },
-      { label: "Über KFZ Faktura", to: "/bewertungen", hash: "ueber" },
+      { label: "Über NexaFlow", to: "/bewertungen", hash: "ueber" },
       { label: "Kontakt", to: "/bewertungen", hash: "kontakt" },
     ],
   },
@@ -65,7 +65,7 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between md:px-8">
-          <p>© 2026 KFZ Faktura. Alle Rechte vorbehalten.</p>
+          <p>© 2026 NexaFlow. Alle Rechte vorbehalten.</p>
           <div className="flex items-center gap-4">
             <p className="font-mono">Werkstattsoftware für Windows</p>
             <LanguagePicker side="top" />
@@ -75,3 +75,4 @@ export function Footer() {
     </footer>
   );
 }
+

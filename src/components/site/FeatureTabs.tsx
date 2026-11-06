@@ -64,7 +64,7 @@ export function FeatureTabs() {
     <div>
       <div
         role="tablist"
-        aria-label="Funktionen von KFZ Faktura"
+        aria-label="Funktionen von NexaFlow"
         className="-mx-5 flex gap-1 overflow-x-auto border-b border-border px-5 md:mx-0 md:px-0"
       >
         {TABS.map((t, i) => {
@@ -136,3 +136,4 @@ export function FeatureTabs() {
     </div>
   );
 }
+

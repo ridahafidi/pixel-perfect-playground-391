@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * KFZ Faktura design system.
+ * NexaFlow design system.
  * Dark automotive palette with an electric-lime accent.
  * All colors are oklch. Components only use the semantic tokens below.
  * `.theme-paper` re-scopes the tokens for selective light sections.
@@ -306,3 +306,4 @@
     transform: none;
   }
 }
+

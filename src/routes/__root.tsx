@@ -83,13 +83,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#101311" },
-      { title: "KFZ Faktura – Werkstattsoftware für Windows" },
+      { title: "NexaFlow – Werkstattsoftware für Windows" },
       {
         name: "description",
-        content: "KFZ Faktura – die Desktop-Software für Kunden, Fahrzeuge, Rechnungen, Ersatzteile und Reifenlager.",
+        content: "NexaFlow – die Desktop-Software für Kunden, Fahrzeuge, Rechnungen, Ersatzteile und Reifenlager.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "KFZ Faktura" },
+      { property: "og:site_name", content: "NexaFlow" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -145,3 +145,4 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
+

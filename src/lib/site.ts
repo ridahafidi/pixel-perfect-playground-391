@@ -1,11 +1,11 @@
 /**
- * Central product facts for the KFZ Faktura marketing site.
+ * Central product facts for the NexaFlow marketing site.
  * Values wrapped in [BRACKETS] are unconfirmed placeholders and must be
  * replaced with verified information before launch.
  */
 
 export const SITE = {
-  name: "KFZ Faktura",
+  name: "NexaFlow",
   tagline: "Die Werkstattverwaltung übersichtlich organisiert.",
   version: "1.0.0",
   platform: "Windows x64",
@@ -27,8 +27,8 @@ export const DOWNLOADS = {
   portable: {
     id: "portable",
     title: "Portable Version",
-    product: "KFZ Faktura 1.0.0 — Windows x64 Portable",
-    file: "KFZ-Faktura-1.0.0-win-x64-portable.zip",
+    product: "NexaFlow 1.0.0 — Windows x64 Portable",
+    file: "NexaFlow-1.0.0-win-x64-portable.zip",
     size: "ca. 122 MB",
     url: "[PORTABLE_DOWNLOAD_URL]",
     description:
@@ -37,8 +37,8 @@ export const DOWNLOADS = {
   installer: {
     id: "installer",
     title: "Installer",
-    product: "KFZ Faktura Setup 1.0.0",
-    file: "KFZ Faktura Setup 1.0.0.exe",
+    product: "NexaFlow Setup 1.0.0",
+    file: "NexaFlow Setup 1.0.0.exe",
     size: "ca. 91 MB",
     url: "[INSTALLER_DOWNLOAD_URL]",
     description: "Die klassische Windows-Installationsversion für eine geführte Installation.",

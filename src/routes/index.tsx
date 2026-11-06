@@ -13,9 +13,9 @@ import { seo } from "@/lib/seo";
 import { DOWNLOADS, SITE } from "@/lib/site";
 import werkstattHalle from "@/assets/werkstatt-halle.jpg";
 
-const TITLE = "KFZ Faktura – Werkstattsoftware für moderne Kfz-Betriebe";
+const TITLE = "NexaFlow – Werkstattsoftware für moderne Kfz-Betriebe";
 const DESCRIPTION =
-  "Kunden, Fahrzeuge, Rechnungen und Lagerverwaltung zentral organisieren. Entdecken Sie KFZ Faktura, die Desktop-Software für Ihren Werkstattalltag.";
+  "Kunden, Fahrzeuge, Rechnungen und Lagerverwaltung zentral organisieren. Entdecken Sie NexaFlow, die Desktop-Software für Ihren Werkstattalltag.";
 
 export const Route = createFileRoute("/")({
   loader: () => getRequestOrigin(),
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/")({
             "@graph": [
               {
                 "@type": "SoftwareApplication",
-                name: "KFZ Faktura",
+                name: "NexaFlow",
                 applicationCategory: "BusinessApplication",
                 operatingSystem: "Windows (x64)",
                 softwareVersion: SITE.version,
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/")({
               },
               {
                 "@type": "Organization",
-                name: "KFZ Faktura",
+                name: "NexaFlow",
                 ...(loaderData ? { url: loaderData } : {}),
               },
             ],
@@ -95,24 +95,24 @@ const FACTS = [
 
 const FAQ: FaqItem[] = [
   {
-    q: "Was ist KFZ Faktura?",
-    a: "KFZ Faktura ist eine Windows-Desktop-Anwendung für Kfz-Werkstätten. Sie bündelt zentrale Verwaltungsaufgaben – Kunden, Fahrzeuge, Angebote, Aufträge, Rechnungen, Ersatzteile und Reifenlager – in einer übersichtlichen Oberfläche.",
+    q: "Was ist NexaFlow?",
+    a: "NexaFlow ist eine Windows-Desktop-Anwendung für Kfz-Werkstätten. Sie bündelt zentrale Verwaltungsaufgaben – Kunden, Fahrzeuge, Angebote, Aufträge, Rechnungen, Ersatzteile und Reifenlager – in einer übersichtlichen Oberfläche.",
   },
   {
     q: "Für welche Werkstätten ist die Software geeignet?",
-    a: "KFZ Faktura richtet sich an freie Werkstätten, Kfz-Meisterbetriebe und Fahrzeugservice-Betriebe, die ihre administrativen Abläufe an einem Windows-Arbeitsplatz strukturiert organisieren möchten.",
+    a: "NexaFlow richtet sich an freie Werkstätten, Kfz-Meisterbetriebe und Fahrzeugservice-Betriebe, die ihre administrativen Abläufe an einem Windows-Arbeitsplatz strukturiert organisieren möchten.",
   },
   {
-    q: "Welche Funktionen bietet KFZ Faktura?",
+    q: "Welche Funktionen bietet NexaFlow?",
     a: "Dashboard mit Umsatz- und Rechnungskennzahlen, Kundenverwaltung, Fahrzeugverwaltung mit FIN sowie HSN/TSN, Dokumente und Rechnungen (Angebote, Aufträge, Rechnungen inklusive Umwandlung), Ersatzteillager mit EK-/VK-Preisen und Mindestbestand-Warnungen sowie ein Reifenlager mit Lagerplätzen, Saison und Profiltiefe.",
   },
   {
     q: "Welche Windows-Version wird unterstützt?",
-    a: "KFZ Faktura 1.0.0 ist für Windows x64 (64-Bit) verfügbar. Die genaue Mindestversion von Windows wird nach abschließender Prüfung veröffentlicht.",
+    a: "NexaFlow 1.0.0 ist für Windows x64 (64-Bit) verfügbar. Die genaue Mindestversion von Windows wird nach abschließender Prüfung veröffentlicht.",
   },
   {
-    q: "Wie kann ich KFZ Faktura installieren?",
-    a: "Sie haben zwei Möglichkeiten: Die portable Version (ZIP) entpacken Sie und starten anschließend „KFZ Faktura.exe“. Alternativ nutzen Sie den klassischen Windows-Installer für eine geführte Installation. In beiden Fällen sind danach Lizenzierung und Anmeldung einzurichten.",
+    q: "Wie kann ich NexaFlow installieren?",
+    a: "Sie haben zwei Möglichkeiten: Die portable Version (ZIP) entpacken Sie und starten anschließend „NexaFlow.exe“. Alternativ nutzen Sie den klassischen Windows-Installer für eine geführte Installation. In beiden Fällen sind danach Lizenzierung und Anmeldung einzurichten.",
   },
   {
     q: "Benötige ich eine Internetverbindung?",
@@ -157,7 +157,7 @@ function HomePage() {
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
               Verwalten Sie Kunden, Fahrzeuge, Rechnungen, Ersatzteile und Reifenlager an einem zentralen Ort.
-              KFZ Faktura hilft Ihnen, administrative Abläufe zu vereinfachen – damit Sie sich auf das konzentrieren
+              NexaFlow hilft Ihnen, administrative Abläufe zu vereinfachen – damit Sie sich auf das konzentrieren
               können, was wirklich zählt: Ihre Werkstatt.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
@@ -203,7 +203,7 @@ function HomePage() {
       {/* VALUE PROPOSITION */}
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <SectionHeading eyebrow="Warum KFZ Faktura" title="Weniger Verwaltung. Mehr Werkstatt." />
+          <SectionHeading eyebrow="Warum NexaFlow" title="Weniger Verwaltung. Mehr Werkstatt." />
           <div className="mt-16 grid gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-3">
             {VALUES.map((v, i) => {
               const Icon = v.icon;
@@ -231,7 +231,7 @@ function HomePage() {
           <SectionHeading
             eyebrow="Produktmodule"
             title="Ein Werkzeug. Viele Möglichkeiten."
-            intro="Wählen Sie einen Bereich und sehen Sie, wie KFZ Faktura die jeweilige Aufgabe organisiert."
+            intro="Wählen Sie einen Bereich und sehen Sie, wie NexaFlow die jeweilige Aufgabe organisiert."
           />
           <div className="mt-14">
             <FeatureTabs />
@@ -307,3 +307,4 @@ function HomePage() {
     </>
   );
 }
+

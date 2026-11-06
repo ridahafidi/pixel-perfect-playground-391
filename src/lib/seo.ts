@@ -16,7 +16,7 @@ export function seo({ path, title, description, origin, noindex }: SeoInput) {
     { property: "og:description", content: description },
     { property: "og:type", content: "website" },
     { property: "og:locale", content: "de_DE" },
-    { property: "og:site_name", content: "KFZ Faktura" },
+    { property: "og:site_name", content: "NexaFlow" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: title },
     { name: "twitter:description", content: description },
@@ -37,3 +37,4 @@ export const SITE_ROUTES = [
   "/datenschutz",
   "/nutzungsbedingungen",
 ] as const;
+
